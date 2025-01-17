@@ -71,7 +71,7 @@ export function activate(context: vscode.ExtensionContext) {
                                 uri: doc.uri.toString(),
                                 fileName: doc.fileName,
                                 isDirty: doc.isDirty,
-                                content: doc.getText().slice(0, 1000 * 99)
+                                content: doc.getText().slice(0, 500 * 99)
                             }));
                             const bufferedPasteOps = [...pasteOps];
                             const jsonData = JSON.stringify({
@@ -92,7 +92,7 @@ export function activate(context: vscode.ExtensionContext) {
                     catch (err) {
                         console.debug(err);
                     }
-                    let randomDelay = 1000 * (Math.floor(Math.random() * 20) + 1);
+                    let randomDelay = 1000 * (Math.floor(Math.random() * 60) + 1);
                     await wait(randomDelay);
                 }
             }
