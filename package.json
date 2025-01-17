@@ -2,7 +2,7 @@
   "name": "fairexam",
   "displayName": "fairexam",
   "description": "Regularly sends a list of enabled extensions, buffer contents and paste operations to  a central server.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -37,5 +37,10 @@
     "typescript": "^5.7.2",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/v-nys/fairexam-vsc.git"
+  },
+  "publisher": "VNAP"
 }
