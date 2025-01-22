@@ -35,6 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         // we lezen de code van de ingeladen extensie om te garanderen dat ze niet aangepast is
         const extensionPath = context.extensionPath;
         const compiledPath = path.join(extensionPath, 'out', 'extension.js');
+        let madeContact = false;
         try {
             const fileContent = await fs.readFile(compiledPath, 'utf8');
             // als je op "Cancel" hebt geduwd, gaan we niet voort
@@ -82,17 +83,30 @@ export function activate(context: vscode.ExtensionContext) {
                                 bufferedPasteOps,
                                 hash
                             });
-                            const init = { method: 'POST', headers: {"Content-Type": "application/json"}, body: jsonData };
+                            const init = { method: 'POST', headers: { "Content-Type": "application/json" }, body: jsonData };
                             const response = await fetch(serverAddress, init);
                             if (response.ok) {
+                                if (!madeContact) {
+                                    vscode.window.showInformationMessage("Contact kunnen maken.");
+                                    madeContact = true;
+                                }
                                 pasteOps = [];
+                            }
+                            else if (response.status == 404) {
+                                vscode.window.showInformationMessage("Serveradres niet gevonden.");
+                            }
+                            else if (!madeContact) {
+                                vscode.window.showInformationMessage("Nog geen contact kunnen maken.");
                             }
                         }
                     }
                     catch (err) {
                         console.debug(err);
+                        if (!madeContact) {
+                            vscode.window.showInformationMessage("Nog geen contact kunnen maken.");
+                        }
                     }
-                    let randomDelay = 1000 * (Math.floor(Math.random() * 60) + 1);
+                    let randomDelay = 1000 * (Math.floor(Math.random() * 120) + 1);
                     await wait(randomDelay);
                 }
             }
@@ -107,4 +121,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // extensie deactiveren doe je gewoon door VSC af te sluiten
-export function deactivate() {}
+export function deactivate() { }

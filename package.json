@@ -2,7 +2,7 @@
   "name": "fairexam",
   "displayName": "fairexam",
   "description": "Regularly sends a list of enabled extensions, buffer contents and paste operations to  a central server.",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.96.0"
   },

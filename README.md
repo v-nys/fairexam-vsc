@@ -9,16 +9,18 @@ This is an extension for monitoring what is happening inside of VSC in an exam c
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
 Initial release
 
----
+### 1.0.1
 
-## Following extension guidelines
+Changed rates
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+### 1.0.2
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+Added error message in case server cannot be found
+
+### 1.0.3
+
+Added additional diagnostics to inform user
