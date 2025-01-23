@@ -17,3 +17,7 @@ All notable changes to the "fairexam" extension will be documented in this file.
 ## [1.0.3]
 
 - Added additional diagnostics to inform user
+
+## [1.0.4]
+
+- Improved usability by avoiding null values on focusout

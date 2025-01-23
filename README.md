@@ -24,3 +24,7 @@ Added error message in case server cannot be found
 ### 1.0.3
 
 Added additional diagnostics to inform user
+
+### 1.0.4
+
+Improved usability by avoiding null values on focusout

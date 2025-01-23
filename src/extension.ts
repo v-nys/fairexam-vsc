@@ -30,8 +30,20 @@ export function activate(context: vscode.ExtensionContext) {
 
     // je moet de extensie expliciet aanzetten met een commando
     const timedAction = vscode.commands.registerCommand('fairexam.monitor', async () => {
-        const userID = await vscode.window.showInputBox({ prompt: "Vul hier je voor het examen meegedeelde UID in." });
-        const serverAddress = await vscode.window.showInputBox({ prompt: "Vul hier het voor het examen meegedeelde serveradres in." });
+        let userID = null;
+        while (!userID) {
+            userID = await vscode.window.showInputBox({
+                ignoreFocusOut: true,
+                prompt: "Vul hier je voor het examen meegedeelde UID in."
+            });
+        }
+        let serverAddress = null;
+        while (!serverAddress) {
+            serverAddress = await vscode.window.showInputBox({
+                ignoreFocusOut: true,
+                prompt: "Vul hier het voor het examen meegedeelde serveradres in."
+            });
+        }
         // we lezen de code van de ingeladen extensie om te garanderen dat ze niet aangepast is
         const extensionPath = context.extensionPath;
         const compiledPath = path.join(extensionPath, 'out', 'extension.js');
@@ -85,6 +97,7 @@ export function activate(context: vscode.ExtensionContext) {
                             });
                             const init = { method: 'POST', headers: { "Content-Type": "application/json" }, body: jsonData };
                             const response = await fetch(serverAddress, init);
+                            // TODO: also make sure server verifies user ID
                             if (response.ok) {
                                 if (!madeContact) {
                                     vscode.window.showInformationMessage("Contact kunnen maken.");
